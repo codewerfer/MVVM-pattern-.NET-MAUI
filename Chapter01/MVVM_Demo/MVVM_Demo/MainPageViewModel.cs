@@ -64,7 +64,7 @@ public class MainPageViewModel : INotifyPropertyChanged
         }
         catch (Exception)
         {
-            //IsButtonVisible = true;
+            IsButtonVisible = true;
         }
     }
 

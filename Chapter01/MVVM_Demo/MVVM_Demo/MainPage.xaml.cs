@@ -1,4 +1,13 @@
-﻿namespace MVVM_Demo;
+﻿using System.Text.Json;
+
+namespace MVVM_Demo;
+
+public class ZenQuote
+{
+    public string q { get; set; }
+    public string a { get; set; }
+    public string h { get; set; }
+}
 
 public partial class MainPage : ContentPage
 {
@@ -15,11 +24,13 @@ public partial class MainPage : ContentPage
         {
             var client = new HttpClient();
 
-            var quote = await
+            string quote = await
                 client.GetStringAsync(
-                "https://my-quotes-api.com/quote-of-the-day");
+                "https://zenquotes.io/api/today");
 
-            QuoteLabel.Text = quote;
+            var x = JsonSerializer.Deserialize<ZenQuote[]>(quote, JsonSerializerOptions.Default);
+
+            QuoteLabel.Text = x[0].q;
 
             QuoteLabel.IsVisible = true;
         }

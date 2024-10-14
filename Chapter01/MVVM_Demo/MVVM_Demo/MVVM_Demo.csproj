@@ -55,7 +55,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="MainPage_Mvvm.xaml.cs">
+	  <Compile Update="MainPage_MVVM.xaml.cs">
 	    <DependentUpon>MainPage_MVVM.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>

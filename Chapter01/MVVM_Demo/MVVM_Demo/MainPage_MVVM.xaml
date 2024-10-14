@@ -15,7 +15,7 @@
             IsVisible="{Binding IsLabelVisible}"
             Style="{DynamicResource TitleStyle}"
             Text="{Binding QuoteOfTheDay}"
-            TextColor="white"
+            TextColor="Black"
             VerticalOptions="Center" />
     </Grid>
 

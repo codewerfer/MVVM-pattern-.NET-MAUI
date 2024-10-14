@@ -1,4 +1,6 @@
-﻿namespace MVVM_Demo;
+﻿using System.Text.Json;
+
+namespace MVVM_Demo;
 
 public interface IQuoteService
 {
@@ -16,11 +18,12 @@ public class QuoteService : IQuoteService
 
     public async Task<string> GetQuote()
     {
-        var response = await httpClient.GetAsync("https://my-quotes-api.com/quote-of-the-day");
+        var response = await httpClient.GetAsync("https://zenquotes.io/api/today");
 
         if (response.IsSuccessStatusCode)
         {
-            return await response.Content.ReadAsStringAsync();
+            var x = await JsonSerializer.DeserializeAsync<ZenQuote[]>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions.Default);
+            return await Task.FromResult(x[0].q);
         }
 
         throw new Exception("Failed to retrieve quote.");
